@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta content="utf-8" />
+	<title>Task Management</title>
+</head>
+<body>
+	<h1>Task Management Tool</h1>
+	<script type="text/javascript">
+	//correct indexedDB object 
+	window.indexedDB = window.indexedDB || window.webkitIndexedDB || window.mozIndexedDB || window.msIndexedDB ||
+		window.oIndexedDB;
+	window.IDKeyRange = window.IDBKeyRange || window.webkitIDBKeyRange || window.mozIDBKeyRange || 
+		window.msIDBKeyRange || window.oIDBKeyRange;
+
+	var db; //store DB 
+	var version = 1; //version of DB
+	//create and connect to DB 
+	openReg.onsuccess = function(e){
+		db = e.target.result; // e.target.result is conncected DB 
+	}
+	//call back function when connecting is fail.
+	openReg.onerror = function(argument) {
+		console.log(argument);
+	}
+	</script>
+</body>
+</html>
