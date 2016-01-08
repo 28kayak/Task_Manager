@@ -43,8 +43,32 @@
 
 		}
 		var store = db.createObjectStore('task', {keyPath: 'no', autoIncrement: true} );
-		
+
 	}
 	</script>
+	<!-- register a task -->
+	<form>
+		<legend>Register Task</legend>
+		<!-- Enter a Task --> 
+		<!-- Detail of the task --> 
+		<label for="task-text">Task:</label>
+		<input type="text" value="" placeholder="what do you do?" id="task-text"> <br>
+		<!-- Data --> 
+		<label for="task-due-date">DUE</label>
+		<input type="date" value="" id="task-due-date"> <br>
+		<!-- priority -->
+		<label for="task-priority">Priority</label>
+		<select id="task-priority">
+			<option value="0">LOW</option>
+			<option value="1">MID</option>
+			<option value="2">HIGH</option>
+		</select>
+	<!-- button -->
+	<div class="action">
+		<input type="button" value="register" id="task-register-button" class="action">
+		<input type="reset" value="clear" class="action">
+	</div>
+	</form>
+
 </body>
 </html>
