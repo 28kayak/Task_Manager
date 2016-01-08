@@ -23,6 +23,28 @@
 	openReg.onerror = function(argument) {
 		console.log(argument);
 	}
+	if (typeof db.setVersion === "function")
+	{
+		if (version > (parseInt(db.version, 10) || 0))
+		{
+			var upgradeReq = db.setVersion(version);
+			upgradeReq.onsuccess = function(argument)
+			{
+				init(db);
+			};
+		}
+	}
+	//create database 
+	function init(db)
+	{
+		if (db.objectStoreNamte.contains('task'))
+		{
+			db.deleteObjectStore('task');
+
+		}
+		var store = db.createObjectStore('task', {keyPath: 'no', autoIncrement: true} );
+		
+	}
 	</script>
 </body>
 </html>
