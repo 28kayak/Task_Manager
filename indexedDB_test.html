@@ -14,7 +14,8 @@
 		window.msIDBKeyRange || window.oIDBKeyRange;
 
 	var db; //store DB 
-	var version = 1; //version of DB
+	var version = 2; //version of DB
+	var openReg = indexedDB.open('taskApp', version);
 	//create and connect to DB 
 	openReg.onsuccess = function(e){
 		db = e.target.result; // e.target.result is conncected DB 
