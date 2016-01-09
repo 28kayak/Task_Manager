@@ -19,7 +19,7 @@
 	//create and connect to DB 
 	openReq.onsuccess = function(e){
 		db = e.target.result; // e.target.result is conncected DB 
-		if (typeof db.setVersion() === "function")
+		if (typeof db.setVersion === "function")
 		{
 			if (version > (parseInt(db.version, 10) || 0))
 			{
