@@ -15,26 +15,27 @@
 
 	var db; //store DB 
 	var version = 2; //version of DB
-	var openReg = indexedDB.open('taskApp', version);
+	var openReq = indexedDB.open('taskApp', version);
 	//create and connect to DB 
-	openReg.onsuccess = function(e){
+	openReq.onsuccess = function(e){
 		db = e.target.result; // e.target.result is conncected DB 
-	}
-	//call back function when connecting is fail.
-	openReg.onerror = function(argument) {
-		console.log(argument);
-	}
-	if (typeof db.setVersion() === "function")
-	{
-		if (version > (parseInt(db.version, 10) || 0))
+		if (typeof db.setVersion() === "function")
 		{
-			var upgradeReq = db.setVersion(version);
-			upgradeReq.onsuccess = function(argument)
+			if (version > (parseInt(db.version, 10) || 0))
 			{
-				init(db);
-			};
+				var upgradeReq = db.setVersion(version);
+				upgradeReq.onsuccess = function(argument)
+				{
+					init(db);
+				};
+			}
 		}
 	}
+	//call back function when connecting is fail.
+	openReq.onerror = function(argument) {
+		console.log(argument);
+	}
+	
 	//create database 
 	function init(db)
 	{
