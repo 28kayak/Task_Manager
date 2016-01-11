@@ -86,9 +86,9 @@
 		var store = tx.objectStore('task');
 		//create struct 
 		var data = {
-			text: taskText;
-			dueDate: dueDate;
-			priority: priority; 
+			text: taskText,
+			dueDate: dueDate,
+			priority: priority 
 		};
 	}
 	var req = store.put(data);
