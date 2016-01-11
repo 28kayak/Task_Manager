@@ -35,7 +35,6 @@
 	openReq.onerror = function(argument) {
 		console.log(argument);
 	}
-	
 	//create database 
 	function init(db)
 	{
@@ -47,6 +46,59 @@
 		var store = db.createObjectStore('task', {keyPath: 'no', autoIncrement: true} );
 
 	}
+	//register task
+	var registerButton = document.querySelector('#task-register-button');
+	//task 
+	var text = document.querySelector('#task-text');
+	//due date
+	var dueDate = document.qeurySelector('#task-due-date');
+	//priority 
+	var priority = document.querySelector('#task-priority');
+	//click event
+	registerButton.addEventListener('click', function(){
+		//if task is not entered 
+		if(!task.value)
+		{
+			return;
+		}
+		//change data type String to Date
+		var paramDueDate;
+		if (!dueDate.value)
+		{
+			paramDueDate = new Date();
+		}else
+		{
+			paramDueDate = new Date(dueDate.value);
+		}
+		var paramPriority = parseInt(priority.value, 10);
+
+		//register task
+		addTask(text.value, paramDueDate, paramPriority);
+		text.value = '';
+		dueDate.value = '';
+		priority.selectedIndex = 1;
+	},false);
+	function addTask (taskText, dueDate, priority)
+	{
+		//start transaction 
+		var tx = db.transaction(['task'], 'readwrite');
+		//get object store 
+		var store = tx.objectStore('task');
+		//create struct 
+		var data = {
+			text: taskText;
+			dueDate: dueDate;
+			priority: priority; 
+		};
+	}
+	var req = store.put(data);
+	req.onsuccess = function(e){
+		console.log('success',data);
+	};
+	req.onerror = function(argument) {
+		console.log('error',data, argument);
+	}
+
 	</script>
 	<!-- register a task -->
 	<form>
@@ -71,6 +123,98 @@
 		<input type="reset" value="clear" class="action">
 	</div>
 	</form>
+	<!-- Desplay Tasks -->
+	<table>
+		<tr>
+			<th width="300px">Task</th>
+			<th width="120px">Due</th>
+			<th width="100px">Priority</th>
+			<th width="80px">-</th>
+		</tr>
+	</table>
+	<script type="text/javascript">
+		function searchTask()
+		{
+			//clear task once
+			clear();
+			//start transaction
+			var tx = db.transaction(['task'],"readonly");
+			var store = tx.objectStore('task');
+
+			//get cursor requrest 
+			var cursorReq = store.openCursor();
+			//call back for success
+			cursorReq.onsuccess = function (argument) {
+				var cursor = e.target.result;
+				if (cursor) 
+				{
+					display(cursor.value);
+					cursor.continue();
+
+				};
+			};//success
+			cursor.Req.onerror = function (argument) {
+				console.log('error', argument);
+			}
+		}
+		var output = document.querySelector('#output');
+	 	function clear()
+	 	{
+	 		//delete all tr-tag with task-item
+	 		var items = document.qeurySelectorAll('.task-item');
+	 		for (var i = 0; i < items.length; i++)
+	 		{
+	 			output.removeChild(items[i]);
+	 		}
+	 	}//clear
+	 	//display data 
+	 	function display (argument) 
+	 	{
+	 		//1 row in table
+	 		var tr = document.createElement('tr');
+	 		tr.className = 'task-item';
+	 		//task
+	 		var td1 = document.createElement('td');
+	 		td1.textContent = data.text;
+	 		//due date
+	 		var td2 = document.createElement('td');
+	 		td2.textContent = dateFormat(data.dueDate);
+	 		td2.className = 'task-property';
+	 		//priority
+	 		var td3 = document.createElement('td');
+	 		td3.textContent = priorityFormat(data.priority);
+	 		td3.className = 'task-property';
+	 		//blunk
+	 		var td4 = document.createElement('td');
+	 		td4.className = 'task-property';
+
+
+	 		//add 1-row data to table
+	 		tr.appendChild(td1);
+	 		tr.appendChild(td2);
+	 		tr.appendChild(td3);
+	 		tr.appendChild(td4);
+	 		output.appendChild(tr);
+	 		//format date info
+	 		function dateFormat(){
+	 			return date.getFullYear() + '/' + (date.getMonth() + 1) + '/' + date.getDate();
+	 		}
+	 		function priorityFormat (priority) {
+	 			switch(priority)
+	 			{
+	 				case 0:
+	 				return 'low';
+	 				case 1:
+	 				return 'mid';
+	 				case 2:
+	 				return 'high';
+	 			}//switch
+	 		}//
+
+
+
+	 	}//display
+	</script>
 
 </body>
 </html>
