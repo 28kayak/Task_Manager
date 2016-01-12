@@ -73,11 +73,12 @@
 		var paramPriority = parseInt(priority.value, 10);
 
 		//register task
-		addTask(text.value, paramDueDate, paramPriority);
+		//addTask(text.value, paramDueDate, paramPriority);
 		text.value = '';
 		dueDate.value = '';
 		priority.selectedIndex = 1;
 	},false);
+
 	function addTask (taskText, dueDate, priority)
 	{
 		//start transaction 
