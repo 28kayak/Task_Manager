@@ -73,7 +73,7 @@
 		var paramPriority = parseInt(priority.value, 10);
 
 		//register task
-		//addTask(text.value, paramDueDate, paramPriority);
+		addTask(text.value, paramDueDate, paramPriority);
 		text.value = '';
 		dueDate.value = '';
 		priority.selectedIndex = 1;
@@ -99,42 +99,7 @@
 	req.onerror = function(argument) {
 		console.log('error',data, argument);
 	}
-
-	</script>
-	<!-- register a task -->
-	<form>
-		<legend>Register Task</legend>
-		<!-- Enter a Task --> 
-		<!-- Detail of the task --> 
-		<label for="task-text">Task:</label>
-		<input type="text" value="" placeholder="what do you do?" id="task-text"> <br>
-		<!-- Data --> 
-		<label for="task-due-date">DUE</label>
-		<input type="date" value="" id="task-due-date"> <br>
-		<!-- priority -->
-		<label for="task-priority">Priority</label>
-		<select id="task-priority">
-			<option value="0">LOW</option>
-			<option value="1">MID</option>
-			<option value="2">HIGH</option>
-		</select>
-	<!-- button -->
-	<div class="action">
-		<input type="button" value="register" id="task-register-button" class="action">
-		<input type="reset" value="clear" class="action">
-	</div>
-	</form>
-	<!-- Desplay Tasks -->
-	<table>
-		<tr>
-			<th width="300px">Task</th>
-			<th width="120px">Due</th>
-			<th width="100px">Priority</th>
-			<th width="80px">-</th>
-		</tr>
-	</table>
-	<script type="text/javascript">
-		function searchTask()
+	function searchTask()
 		{
 			//clear task once
 			clear();
@@ -215,6 +180,41 @@
 
 
 	 	}//display
+	</script>
+	<!-- register a task -->
+	<form>
+		<legend>Register Task</legend>
+		<!-- Enter a Task --> 
+		<!-- Detail of the task --> 
+		<label for="task-text">Task:</label>
+		<input type="text" value="" placeholder="what do you do?" id="task-text"> <br>
+		<!-- Data --> 
+		<label for="task-due-date">DUE</label>
+		<input type="date" value="" id="task-due-date"> <br>
+		<!-- priority -->
+		<label for="task-priority">Priority</label>
+		<select id="task-priority">
+			<option value="0">LOW</option>
+			<option value="1">MID</option>
+			<option value="2">HIGH</option>
+		</select>
+	<!-- button -->
+	<div class="action">
+		<input type="button" value="register" id="task-register-button" class="action" >
+		<input type="reset" value="clear" class="action">
+	</div>
+	</form>
+	<!-- Desplay Tasks -->
+	<table>
+		<tr>
+			<th width="300px">Task</th>
+			<th width="120px">Due</th>
+			<th width="100px">Priority</th>
+			<th width="80px">-</th>
+		</tr>
+	</table>
+	<script type="text/javascript">
+		
 	</script>
 
 </body>
