@@ -55,7 +55,12 @@
 	//priority 
 	var priority = document.querySelector('#task-priority');
 	//click event
-	registerButton.addEventListener('click', function(){
+	if (registerButton == null)
+	{
+		console.log("NULL");
+	}else
+	{
+		registerButton.addEventListener('click', function(){
 		//if task is not entered 
 		if(!task.value)
 		{
@@ -78,6 +83,8 @@
 		dueDate.value = '';
 		priority.selectedIndex = 1;
 	},false);
+	}
+	
 
 	function addTask (taskText, dueDate, priority)
 	{
