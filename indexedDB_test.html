@@ -37,7 +37,7 @@
 	}//onerror
 	openReq.onupgradeneeded = function(argument) 
 	{
-		var db = e.target.result;
+		var db = argument.target.result;
 		init(db);	
 	};
 
