@@ -66,12 +66,17 @@
 				};
 			}
 		}
-		openReq.onupgradeneeded = function(argument)
-		{
-			var db = argument.target.result;
-			init(db);
-		};
-	}
+	}//onSuccess
+	openReq.onerror = function(argument)
+	{
+		console.log(argument);
+	};//onError
+	openReq.onupgradeneeded = function(argument)
+	{
+		var db = argument.target.result;
+		init(db);
+	};//onUpGradeNeeded
+
 	//call back function when connecting is fail.
 
 
@@ -215,8 +220,10 @@
 	 		tr.appendChild(td4);
 	 		output.appendChild(tr);
 	 		//format date info
-	 		function dateFormat(date){
+
+			function dateFormat(date){
 	 			return date.getFullYear() + '/' + (date.getMonth() + 1) + '/' + date.getDate();
+
 	 		}
 	 		function priorityFormat (priority) {
 	 			switch(priority)
