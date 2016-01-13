@@ -246,6 +246,7 @@
 			//when delete button is clicked:
 			button.addEventListener('click', function(){
 				//delete a task of given task number
+				console.log('key' + parseInt(this.dataset['num'], 10 ));
 				removeTask(parseInt(this.dataset['num'], 10 ));
 				//update task-list
 				searchTask();
@@ -280,6 +281,7 @@
 	//delete task
 	function removeTask(number)
 	{
+		console.log('In remove Task');
 		var tx = db.transaction(['task'], 'readwrite');
 		var store = tx.objectStore('task');
 
