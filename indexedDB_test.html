@@ -47,7 +47,7 @@
 		window.msIDBKeyRange || window.oIDBKeyRange;
 
 	var db; //store DB 
-	var version = 2; //version of DB
+	var version = 3; //version of DB
 	var openReq = indexedDB.open('task', version);
 	//create and connect to DB 
 	openReq.onsuccess = function(e){
@@ -92,7 +92,9 @@
 			db.deleteObjectStoreNames('task');
 
 		}
-		var store = db.createObjectStore('task', {keyPath: 'no', autoIncrement: true} );
+		var store = db.createObjectStore('task', {keyPath: 'no', autoIncrement: true} );//create objectStore
+		//create index
+		store.createIndex('due-date','dueDate', {unique:false});
 
 	}//init
 	//register task
@@ -274,6 +276,14 @@
 				return 'high';
 		}//switch
 	}//priorityFormat
+	//delete task
+	function removeTask(number)
+	{
+		var tx = db.transaction(['task'], 'readwrite');
+		var store = tx.objectStore('task');
+
+		store.delete(number);
+	}
 
 
 	</script>
