@@ -137,8 +137,9 @@
 			dueDate: dueDate,
 			priority: priority 
 		};
-	}
-	var req = store.put(data);
+		var req = store.put(data);
+	}//addTask
+	
 	req.onsuccess = function(e){
 		console.log('success',data);
 	};
