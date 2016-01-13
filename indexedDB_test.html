@@ -15,7 +15,7 @@
 
 	var db; //store DB 
 	var version = 2; //version of DB
-	var openReq = indexedDB.open('taskApp', version);
+	var openReq = indexedDB.open('task', version);
 	//create and connect to DB 
 	openReq.onsuccess = function(e){
 		db = e.target.result; // e.target.result is conncected DB 
@@ -34,7 +34,13 @@
 	//call back function when connecting is fail.
 	openReq.onerror = function(argument) {
 		console.log(argument);
-	}
+	}//onerror
+	openReq.onupgradeneeded = function(argument) 
+	{
+		var db = e.target.result;
+		init(db);	
+	};
+
 	//create database 
 	function init(db)
 	{
@@ -107,7 +113,7 @@
 		console.log('error',data, argument);
 	}
 	function searchTask()
-		{
+	{
 			//clear task once
 			clear();
 			//start transaction
@@ -141,14 +147,14 @@
 	 		}
 	 	}//clear
 	 	//display data 
-	 	function display (argument) 
+	 	function display (data) 
 	 	{
 	 		//1 row in table
 	 		var tr = document.createElement('tr');
 	 		tr.className = 'task-item';
 	 		//task
 	 		var td1 = document.createElement('td');
-	 		td1.textContent = data.text;
+	 		td1.textContent = t4.text;
 	 		//due date
 	 		var td2 = document.createElement('td');
 	 		td2.textContent = dateFormat(data.dueDate);
