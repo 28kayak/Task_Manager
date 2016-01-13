@@ -236,7 +236,7 @@
 	 		var td4 = document.createElement('td');
 	 		td4.className = 'task-property';
 
-
+			td4.appendChild(button);
 	 		//add 1-row data to table
 	 		tr.appendChild(td1);
 	 		tr.appendChild(td2);
@@ -261,7 +261,20 @@
 				return 'high';
 		}//switch
 	}//priorityFormat
-		
+	//delete button
+	var button = document.createElement('button');
+	button.textContent = 'Delete';
+	/*削除対象のタスク番号をhtml5のカスタムデータ属性で保存する。*/
+	button.dataset['num'] = data.num;
+	//when delete button is clicked:
+	button.addEventListener('click', function(){
+		//delete a task of given task number
+		removeTask(parseInt(this.dataset['num'], 10 ));
+		//update task-list
+		searchTask();
+
+	},false);//addEventListener
+
 	</script>
 	
 
