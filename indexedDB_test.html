@@ -44,9 +44,9 @@
 	//create database 
 	function init(db)
 	{
-		if (db.objectStoreNamte.contains('task'))
+		if (db.objectStoreNames.contains('task'))
 		{
-			db.deleteObjectStore('task');
+			db.deleteObjectStoreNames('task');
 
 		}
 		var store = db.createObjectStore('task', {keyPath: 'no', autoIncrement: true} );
