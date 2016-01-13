@@ -89,7 +89,8 @@
 		if (db.objectStoreNames.contains('task'))
 		{
 			console.log("objectStore is deleted");
-			db.deleteObjectStoreNames('task');
+			//db.deleteObjectStoreNames('task');
+			db.deleteObjectStore('task');
 
 		}
 		var store = db.createObjectStore('task', {keyPath: 'no', autoIncrement: true} );//create objectStore
