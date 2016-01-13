@@ -136,6 +136,7 @@
 
 	function addTask (taskText, dueDate, priority)
 	{
+		console.log("add task");
 		//start transaction 
 		var tx = db.transaction(['task'], 'readwrite');
 		//get object store 
@@ -160,28 +161,28 @@
 	
 	function searchTask()
 	{
-			//clear task once
-			clear();
-			//start transaction
-			var tx = db.transaction(['task'],"readonly");
-			var store = tx.objectStore('task');
+		console.log("searchTask")
+		//clear task once
+		clear();
+		//start transaction
+		var tx = db.transaction(['task'],"readonly");
+		var store = tx.objectStore('task');
 
-			//get cursor requrest 
-			var cursorReq = store.openCursor();
-			//call back for success
-			cursorReq.onsuccess = function (e) {
-				var cursor = e.target.result;
-				if (cursor) 
-				{
-					display(cursor.value);
-					cursor.continue();
-
-				};
-			};//success
-			cursor.Req.onerror = function (argument) {
-				console.log('error', argument);
-			}
+		//get cursor requrest
+		var cursorReq = store.openCursor();
+		//call back for success
+		cursorReq.onsuccess = function (e) {
+			var cursor = e.target.result;
+			if (cursor)
+			{
+				display(cursor.value);
+				cursor.continue();
+			};
+		};//success
+		cursor.Req.onerror = function (argument) {
+			console.log('error', argument);
 		}
+	}//searchTask
 		var output = document.querySelector('#output');
 	 	function clear()
 	 	{
@@ -195,6 +196,7 @@
 	 	//display data 
 	 	function display (data) 
 	 	{
+			console.log("display");
 	 		//1 row in table
 	 		var tr = document.createElement('tr');
 	 		tr.className = 'task-item';
