@@ -142,7 +142,9 @@
 		};
 		var req = store.put(data);
 		req.onsuccess = function(e){
-		console.log('success',data);
+			console.log('success',data);
+			display(data.text, data.dueDate,data.priority);
+
 		};
 		req.onerror = function(argument) {
 			console.log('error',data, argument);
