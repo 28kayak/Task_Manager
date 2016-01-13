@@ -31,7 +31,7 @@
 	</form>
 	<!-- Desplay Tasks -->
 	<table id="output">
-		<tr>
+		<tr class="task-item">
 			<th width="300px">Task</th>
 			<th width="120px">Due</th>
 			<th width="100px">Priority</th>
@@ -185,16 +185,17 @@
 			console.log('error', argument);
 		}
 	}//searchTask
-		var output = document.querySelector('#output');
-	 	function clear()
+	var output = document.querySelector('#output');
+	function clear()
+	{
+		console.log("clear clicked");
+	 	//delete all tr-tag with task-item
+	 	var items = document.querySelector('.task-item');
+	 	for (var i = 0; i < items.length; i++)
 	 	{
-	 		//delete all tr-tag with task-item
-	 		var items = document.querySelector('.task-item');
-	 		for (var i = 0; i < items.length; i++)
-	 		{
-	 			output.removeChild(items[i]);
-	 		}
-	 	}//clear
+	 		output.removeChild(items[i]);
+	 	}
+	}//clear
 	 	//display data 
 	 	function display (data) 
 	 	{
