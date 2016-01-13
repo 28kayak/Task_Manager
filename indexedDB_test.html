@@ -123,7 +123,7 @@
 			//get cursor requrest 
 			var cursorReq = store.openCursor();
 			//call back for success
-			cursorReq.onsuccess = function (argument) {
+			cursorReq.onsuccess = function (e) {
 				var cursor = e.target.result;
 				if (cursor) 
 				{
@@ -175,7 +175,7 @@
 	 		tr.appendChild(td4);
 	 		output.appendChild(tr);
 	 		//format date info
-	 		function dateFormat(){
+	 		function dateFormat(date){
 	 			return date.getFullYear() + '/' + (date.getMonth() + 1) + '/' + date.getDate();
 	 		}
 	 		function priorityFormat (priority) {
@@ -218,7 +218,7 @@
 	</div>
 	</form>
 	<!-- Desplay Tasks -->
-	<table>
+	<table id="output">
 		<tr>
 			<th width="300px">Task</th>
 			<th width="120px">Due</th>
