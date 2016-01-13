@@ -244,26 +244,24 @@
 	 		tr.appendChild(td4);
 	 		output.appendChild(tr);
 	 		//format date info
+		}//display
 
-			function dateFormat(date){
-	 			return date.getFullYear() + '/' + (date.getMonth() + 1) + '/' + date.getDate();
+	function dateFormat(date){
+		return date.getFullYear() + '/' + (date.getMonth() + 1) + '/' + date.getDate();
 
-	 		}//dateFormat
-	 		function priorityFormat (priority) {
-	 			switch(priority)
-	 			{
-	 				case 0:
-	 				return 'low';
-	 				case 1:
-	 				return 'mid';
-	 				case 2:
-	 				return 'high';
-	 			}//switch
-	 		}//priorityFormat
-
-
-
-	 	}//display
+	}//dateFormat
+	function priorityFormat (priority) {
+		switch(priority)
+		{
+			case 0:
+				return 'low';
+			case 1:
+				return 'mid';
+			case 2:
+				return 'high';
+		}//switch
+	}//priorityFormat
+		
 	</script>
 	
 
