@@ -60,18 +60,21 @@
 				{
 					init(db);
 				};
+				upgradeReq.onerror = function(argument)
+				{
+					console.log(argument);
+				};
 			}
 		}
+		openReq.onupgradeneeded = function(argument)
+		{
+			var db = argument.target.result;
+			init(db);
+		};
 	}
 	//call back function when connecting is fail.
-	openReq.onerror = function(argument) {
-		console.log(argument);
-	}//onerror
-	openReq.onupgradeneeded = function(argument) 
-	{
-		var db = argument.target.result;
-		init(db);	
-	};
+
+
 
 	//create database 
 	function init(db)
