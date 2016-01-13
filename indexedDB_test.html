@@ -138,14 +138,15 @@
 			priority: priority 
 		};
 		var req = store.put(data);
+		req.onsuccess = function(e){
+		console.log('success',data);
+		};
+		req.onerror = function(argument) {
+			console.log('error',data, argument);
+		};
 	}//addTask
 	
-	req.onsuccess = function(e){
-		console.log('success',data);
-	};
-	req.onerror = function(argument) {
-		console.log('error',data, argument);
-	}
+	
 	function searchTask()
 	{
 			//clear task once
