@@ -67,6 +67,7 @@
 			}
 		}
 	}//onSuccess
+	//call back function when connecting is fail.
 	openReq.onerror = function(argument)
 	{
 		console.log(argument);
@@ -77,7 +78,7 @@
 		init(db);
 	};//onUpGradeNeeded
 
-	//call back function when connecting is fail.
+
 
 
 
@@ -148,7 +149,7 @@
 		var req = store.put(data);
 		req.onsuccess = function(e){
 			console.log('success',data);
-			display(data.text, data.dueDate,data.priority);
+			//display(data.text, data.dueDate,data.priority);
 
 		};
 		req.onerror = function(argument) {
@@ -224,7 +225,7 @@
 			function dateFormat(date){
 	 			return date.getFullYear() + '/' + (date.getMonth() + 1) + '/' + date.getDate();
 
-	 		}
+	 		}//dateFormat
 	 		function priorityFormat (priority) {
 	 			switch(priority)
 	 			{
@@ -235,7 +236,7 @@
 	 				case 2:
 	 				return 'high';
 	 			}//switch
-	 		}//
+	 		}//priorityFormat
 
 
 
