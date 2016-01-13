@@ -127,9 +127,11 @@
 
 		//register task
 		addTask(text.value, paramDueDate, paramPriority);
+		console.log("after add task");
 		text.value = '';
 		dueDate.value = '';
 		priority.selectedIndex = 1;
+		searchTask();
 	},false);
 	}
 	
