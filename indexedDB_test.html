@@ -27,6 +27,7 @@
 	<div class="action">
 		<input type="button" value="register" id="task-register-button" class="action" >
 		<input type="reset" value="clear" class="action">
+		<input type="button" value="pick one" id="pick-one" class="action">
 	</div>
 	</form>
 	<!-- Desplay Tasks -->
@@ -96,6 +97,7 @@
 	}//init
 	//register task
 	var registerButton = document.querySelector('#task-register-button');
+	var pickOne = document.querySelector('#pick-one');
 	//task 
 	var text = document.querySelector('#task-text');
 	//due date
@@ -110,30 +112,46 @@
 	{
 		registerButton.addEventListener('click', function(){
 		//if task is not entered 
-		if(!text.value)
-		{
-			return;
-		}
-		//change data type String to Date
-		var paramDueDate;
-		if (!dueDate.value)
-		{
-			paramDueDate = new Date();
-		}else
-		{
-			paramDueDate = new Date(dueDate.value);
-		}
-		var paramPriority = parseInt(priority.value, 10);
+			if(!text.value)
+			{
+				return;
+			}
+			//change data type String to Date
+			var paramDueDate;
+			if (!dueDate.value)
+			{
+				paramDueDate = new Date();
+			}else
+			{
+				paramDueDate = new Date(dueDate.value);
+			}
+			var paramPriority = parseInt(priority.value, 10	);
 
-		//register task
-		addTask(text.value, paramDueDate, paramPriority);
-		console.log("after add task");
-		text.value = '';
-		dueDate.value = '';
-		priority.selectedIndex = 1;
-		searchTask();
-	},false);
-	}
+			//register task
+			addTask(text.value, paramDueDate, paramPriority);
+			console.log("after add task");
+			text.value = '';
+			dueDate.value = '';
+			priority.selectedIndex = 1;
+			searchTask();
+		},false);
+		pickOne.addEventListener('click', function(){
+			var tx = db.transaction(['task'], 'readonly');
+			var store = tx.objectStore('task');
+			//task number to get
+			var num = 1;
+			//get data
+			var req = store.get(num);
+			//success call back
+			req.onsuccess = function(event){
+				console.log(e.target.result);
+			};//onsuccess
+
+		},false);//add Event Listener
+
+
+
+	}//else
 	
 
 	function addTask (taskText, dueDate, priority)
