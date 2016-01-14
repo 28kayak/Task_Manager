@@ -86,6 +86,7 @@
 	//create database 
 	function init(db)
 	{
+		console.log("In INIT");
 		if (db.objectStoreNames.contains('task'))
 		{
 			console.log("objectStore is deleted");
@@ -286,6 +287,7 @@
 		var store = tx.objectStore('task');
 
 		store.delete(number);
+		//store.delete(num)
 
 	}
 
